@@ -1,7 +1,7 @@
-import AppLayout from '../layouts/AppLayout';
-import VideoCard from '../components/videos/VideoCard';
-import VideoWrapper from '../components/videos/VideoWrapper';
-import Mock from '../utils/mock';
+import AppLayout from 'layouts/AppLayout';
+import VideoCard from 'components/videos/VideoCard';
+import VideoWrapper from 'components/videos/VideoWrapper';
+import Mock from 'utils/mock';
 
 function Home(props) {
     const videoList = Mock.items.map((video, index) =>

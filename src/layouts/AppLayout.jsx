@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TopBar from '../components/navigation/TopBar';
+import TopBar from 'components/navigation/TopBar';
 
 const Main = styled.main`
     max-width: 1200px;

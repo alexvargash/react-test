@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Menu from '../svgs/Menu';
-import Moon from '../svgs/Moon';
-import Avatar from '../users/Avatar';
-import InputText from '../inputs/InputText';
+import Menu from 'components/svgs/Menu';
+import Moon from 'components/svgs/Moon';
+import Avatar from 'components/users/Avatar';
+import InputText from 'components/inputs/InputText';
 
 const Header = styled.header`
     display: flex;

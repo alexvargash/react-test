@@ -14,8 +14,13 @@ const Input = styled.input`
 
 
 function InputText(props) {
+    function changed(e) {
+        e.preventDefault();
+        console.log(e.target.value);
+    }
+
     return (
-        <Input id={props.id} type="text" name={props.name} />
+        <Input id={props.id} type="text" name={props.name} onChange={changed}/>
     );
 }
 

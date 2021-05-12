@@ -24,17 +24,11 @@ const FlexWrapper = styled.div`
 `;
 
 function TopBar(props) {
-
-    function changed(e) {
-        e.preventDefault();
-        console.log('yeah?');
-    }
-
     return (
         <Header>
             <FlexWrapper>
                 <Menu height="25" width="25" />
-                <InputText id="search" name="search" onChange={changed} />
+                <InputText id="search" name="search" onChange={props.onChange} />
             </FlexWrapper>
             <FlexWrapper>
                 <Moon height="25" width="25" />

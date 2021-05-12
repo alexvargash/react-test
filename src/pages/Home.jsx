@@ -1,11 +1,23 @@
-import AppLayout from 'layouts/AppLayout';
+import styled from 'styled-components';
+import TopBar from 'components/navigation/TopBar';
 import VideoCard from 'components/videos/VideoCard';
 import VideoWrapper from 'components/videos/VideoWrapper';
 import { useState, useEffect } from 'react';
+const Main = styled.main`
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 0px;
+`;
 
 function Home(props) {
     const [loading, setLoading] = useState(true);
     const [videos, setVideos] = useState({});
+    const [search, setSearch] = useState('wizeline');
+
+    const onChange = (value) => {
+        setSearch(value);
+    };
 
     useEffect(() => {
         window.gapi.client.init({
@@ -13,7 +25,7 @@ function Home(props) {
             'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
         }).then(() => {
             return window.gapi.client.request({
-                'path': 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=wizeline&type=video',
+                'path': `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${search}&type=video`,
             });
         }).then((response) => {
             const videoList = response.result.items.map((video, index) =>
@@ -29,19 +41,22 @@ function Home(props) {
         }).catch((error) => {
             console.log('Error: ' + error);
         });
-    }, []);
+    }, [search]);
 
     return (
-        <AppLayout>
-            {loading &&
-                <p>Loading ...</p>
-            }
-            {!loading &&
-                <VideoWrapper>
-                    {videos}
-                </VideoWrapper>
-            }
-        </AppLayout>
+        <div>
+            <TopBar onChange={onChange} />
+            <Main>
+                {loading &&
+                    <p>Loading ...</p>
+                }
+                {!loading &&
+                    <VideoWrapper>
+                        {videos}
+                    </VideoWrapper>
+                }
+            </Main>
+        </div>
     );
 }
 

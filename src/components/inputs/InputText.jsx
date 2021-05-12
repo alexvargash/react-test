@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { debounce } from 'lodash';
+import { useEffect, useState, useCallback } from 'react';
 
 const Input = styled.input`
     color: #64748B;
@@ -14,13 +16,31 @@ const Input = styled.input`
 
 
 function InputText(props) {
-    function changed(e) {
-        e.preventDefault();
-        console.log(e.target.value);
-    }
+    const [query, setQuery] = useState('wizeline');
+
+    const onChange = (e) => {
+        setQuery(e.target.value);
+    };
+
+    const updateQuery = () => {
+        props.onChange(query);
+    };
+
+    const delayedQuery = useCallback(debounce(updateQuery, 800), [query]);
+
+    useEffect(() => {
+        delayedQuery();
+        return delayedQuery.cancel;
+    }, [query, delayedQuery]);
 
     return (
-        <Input id={props.id} type="text" name={props.name} onChange={changed}/>
+        <Input
+            id={props.id}
+            type="text"
+            name={props.name}
+            value={query}
+            onChange={onChange}
+        />
     );
 }
 

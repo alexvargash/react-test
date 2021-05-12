@@ -29,9 +29,11 @@ Object {
           </svg>
           <input
             class="sc-dkPtyc pCpHc"
+            data-testid="search"
             id="search"
             name="search"
             type="text"
+            value="wizeline"
           />
         </div>
         <div
@@ -103,9 +105,11 @@ Object {
         </svg>
         <input
           class="sc-dkPtyc pCpHc"
+          data-testid="search"
           id="search"
           name="search"
           type="text"
+          value="wizeline"
         />
       </div>
       <div

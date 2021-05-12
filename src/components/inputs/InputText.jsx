@@ -35,6 +35,7 @@ function InputText(props) {
 
     return (
         <Input
+            data-testid="search"
             id={props.id}
             type="text"
             name={props.name}

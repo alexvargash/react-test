@@ -20,6 +20,10 @@ function Home(props) {
     };
 
     useEffect(() => {
+        getYoutubeVideos();
+    }, [search]);
+
+    const getYoutubeVideos = () => {
         window.gapi.client.init({
             'apiKey': 'AIzaSyCDXngKgFQ4hqym6ppDf9FPWdzxAxf6L1A',
             'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
@@ -41,7 +45,7 @@ function Home(props) {
         }).catch((error) => {
             console.log('Error: ' + error);
         });
-    }, [search]);
+    }
 
     return (
         <div>
@@ -51,7 +55,7 @@ function Home(props) {
                     <p>Loading ...</p>
                 }
                 {!loading &&
-                    <VideoWrapper>
+                    <VideoWrapper data-testid="videos">
                         {videos}
                     </VideoWrapper>
                 }
